@@ -8,6 +8,9 @@ from selenium.webdriver.common.by import By
 # Define driver, options, and service
 chrome_options = Options()
 chrome_options.add_argument("--disable-search-engine-choice-screen")
+
+dow
+
 service = Service("chromedriver-win64/chromedriver.exe")
 driver = webdriver.Chrome(options=chrome_options, service=service)
 
@@ -44,6 +47,13 @@ email_field.send_keys("frederickkankam7@gmail.com")
 current_address_field.send_keys("Mataheko")
 permanent_address_field.send_keys("Tema")
 driver.execute_script("arguments[0].click();", submit_button)
+
+# Locate the Upload and Download element and lick the download button
+upload_download = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "item-7")))
+upload_download.click()
+
+download_button = driver.find_element(By.ID, "downloadButton")
+driver.execute_script("arguments[0].click();", download_button)
 
 # Close window
 input("Press enter to close the browser")
