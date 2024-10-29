@@ -4,13 +4,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import os
 
 # Define driver, options, and service
 chrome_options = Options()
 chrome_options.add_argument("--disable-search-engine-choice-screen")
 
-dow
-
+current_directory = os.getcwd()
+prefs = {"download.default_directory" : current_directory}
+chrome_options.add_experimental_option("prefs", prefs)
 service = Service("chromedriver-win64/chromedriver.exe")
 driver = webdriver.Chrome(options=chrome_options, service=service)
 
