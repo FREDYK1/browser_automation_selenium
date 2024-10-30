@@ -23,18 +23,18 @@ class WebAutomation:
         # Open the browser and navigate to the URL
         self.driver.get("https://demoqa.com/login")
 
-    def login(self):
+    def login(self, username, password):
         # Locate username, password, and login button fields
         username_field = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, "userName")))
         password_field = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, "password")))
         login_button = self.driver.find_element(By.ID, "login")
 
         # Insert username, password, and click login button
-        username_field.send_keys("FREDYKcode1")
-        password_field.send_keys("FREDYK@code1")
+        username_field.send_keys(username)
+        password_field.send_keys(password)
         self.driver.execute_script("arguments[0].click();", login_button)
 
-    def fill_form(self):
+    def fill_form(self, full_name, email, current_address, permanent_address):
         # Locate the element dropdown and Textbox
         elements = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div')))
@@ -53,10 +53,10 @@ class WebAutomation:
         submit_button = self.driver.find_element(By.ID, "submit")
 
         # Fill the form
-        full_name_field.send_keys("Frederick Kankam")
-        email_field.send_keys("frederickkankam7@gmail.com")
-        current_address_field.send_keys("Mataheko")
-        permanent_address_field.send_keys("Tema")
+        full_name_field.send_keys(full_name)
+        email_field.send_keys(email)
+        current_address_field.send_keys(current_address)
+        permanent_address_field.send_keys(permanent_address)
         self.driver.execute_script("arguments[0].click();", submit_button)
 
     def download_file(self):
@@ -70,31 +70,4 @@ class WebAutomation:
     def close_browser(self):
         # Close window
         self.driver.quit()
-
-
-
-if __name__ == "__main__":
-    web_automation = WebAutomation()
-    web_automation.login()
-    web_automation.fill_form()
-    web_automation.download_file()
-    web_automation.close_browser()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
